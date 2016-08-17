@@ -364,7 +364,7 @@ int main(int argc, char *argv[])
 	if (ret < 0 || ret >= sizeof(logpath))
 		exit(EXIT_FAILURE);
 
-	ret = lxc_log_init(NULL, logpath, "NOTICE", "lxc-monitord", 0, lxcpath);
+	ret = lxc_log_init(NULL, logpath, "TRACE", "lxc-monitord", 0, lxcpath);
 	if (ret)
 		INFO("Failed to open log file %s, log will be lost", lxcpath);
 	lxc_log_options_no_override();
