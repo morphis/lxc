@@ -278,13 +278,21 @@ int lxc_monitord_spawn(const char *lxcpath)
 	pid_t pid1,pid2;
 	int pipefd[2];
 	char pipefd_str[11];
+	char lxc_monitord_path[PATH_MAX];
+
+	if (getenv("SNAP"))
+		snprintf(lxc_monitord_path, PATH_MAX, "%s%s", getenv("SNAP"), LXC_MONITORD_PATH);
+	else
+		snprintf(lxc_monitord_path, PATH_MAX, "%s", LXC_MONITORD_PATH);
 
 	char * const args[] = {
-		LXC_MONITORD_PATH,
+		lxc_monitord_path,
 		(char *)lxcpath,
 		pipefd_str,
 		NULL,
 	};
+
+	DEBUG("Using lxc-monitord path %s", lxc_monitord_path);
 
 	/* double fork to avoid zombies when monitord exits */
 	pid1 = fork();
