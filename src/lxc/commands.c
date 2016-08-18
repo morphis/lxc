@@ -997,6 +997,8 @@ int lxc_cmd_init(const char *name, struct lxc_handler *handler,
 		return -1;
 	}
 
+	DEBUG("Opened command service endpoint at %s", offset);
+
 	if (fcntl(fd, F_SETFD, FD_CLOEXEC)) {
 		SYSERROR("failed to set sigfd to close-on-exec");
 		close(fd);
