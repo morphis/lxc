@@ -155,6 +155,8 @@ static bool aa_needs_transition(char *curlabel)
 		return false;
 	if (strcmp(curlabel, "/usr/bin/lxc-start") == 0)
 		return false;
+	if (strcmp(curlabel, "snap.anbox.container-manager//lxc") == 0)
+		return false;
 	return true;
 }
 
